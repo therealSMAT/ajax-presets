@@ -10,16 +10,10 @@ class Preset extends ConsolePreset {
 
     public static function install()
     {
-        static::cleanSassDirectory();
         static::updatePackages();
         static::updateMix();
         static::updateScripts();
-        static::loadHelper();
-    }
-
-    public static function cleanSassDirectory()
-    {
-        File::cleanDirectory(resource_path('assets/sass'));
+        static::loadHelperFile();
     }
 
     public static function updatePackageArray($packages)
@@ -42,7 +36,7 @@ class Preset extends ConsolePreset {
         copy(__DIR__.'/stubs/bootstrap.js', resource_path('assets/js/bootstrap.js'));
     }
 
-    private static function copyHelper()
+    private static function copyHelperFile()
     {
         copy(__DIR__.'/stubs/Helpers.php', app_path('Helpers.php'));
     }
@@ -50,9 +44,9 @@ class Preset extends ConsolePreset {
     /**
      * Copy the Helper.php file
      */
-    public static function loadHelper()
+    public static function loadHelperFile()
     {
-        static::copyHelper();
+        static::copyHelperFile();
 
         static::updateComposerFile();
     }
